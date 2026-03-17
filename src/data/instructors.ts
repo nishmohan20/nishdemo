@@ -21,6 +21,7 @@ export interface Instructor {
   isNew: boolean;
   bio: string;
   hourlyRate: number;
+  discountRate?: number;
   reviews: Review[];
 }
 
