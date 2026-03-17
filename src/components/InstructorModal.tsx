@@ -27,12 +27,23 @@ const InstructorModal = ({ instructor, open, onClose }: InstructorModalProps) =>
           <div className="absolute bottom-4 left-4">
             <h2 className="font-display text-2xl font-bold text-primary-foreground drop-shadow-lg">{instructor.name}</h2>
             <div className="mt-1 flex items-center gap-2">
-              <Star className="h-4 w-4 fill-star text-star" />
-              <span className="text-sm font-bold text-primary-foreground">{instructor.score}</span>
-              <span className="text-sm text-primary-foreground/80">·</span>
-              <span className="text-sm text-primary-foreground/80">{instructor.reviewCount} reviews</span>
-              <span className="text-sm text-primary-foreground/80">·</span>
-              <span className="text-sm font-bold text-primary-foreground">${instructor.hourlyRate}/hr</span>
+              {!instructor.isNew && (
+                <>
+                  <Star className="h-4 w-4 fill-star text-star" />
+                  <span className="text-sm font-bold text-primary-foreground">{instructor.score}</span>
+                  <span className="text-sm text-primary-foreground/80">·</span>
+                  <span className="text-sm text-primary-foreground/80">{instructor.reviewCount} reviews</span>
+                  <span className="text-sm text-primary-foreground/80">·</span>
+                </>
+              )}
+              {instructor.discountRate ? (
+                <>
+                  <span className="text-sm text-primary-foreground/60 line-through">${instructor.hourlyRate}/hr</span>
+                  <span className="text-sm font-bold text-primary-foreground">${instructor.discountRate}/hr</span>
+                </>
+              ) : (
+                <span className="text-sm font-bold text-primary-foreground">${instructor.hourlyRate}/hr</span>
+              )}
             </div>
           </div>
         </div>
