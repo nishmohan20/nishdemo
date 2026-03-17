@@ -34,21 +34,34 @@ const InstructorCard = ({ instructor, onClick }: InstructorCardProps) => {
             {instructor.name}
           </h3>
           <span className="rounded-lg bg-card/90 px-2 py-1 text-sm font-bold text-card-foreground backdrop-blur-sm">
-            ${instructor.hourlyRate}/hr
+            {instructor.discountRate ? (
+              <span className="flex items-center gap-1.5">
+                <span className="text-muted-foreground line-through text-xs">${instructor.hourlyRate}</span>
+                <span className="text-primary">${instructor.discountRate}/hr</span>
+              </span>
+            ) : (
+              `$${instructor.hourlyRate}/hr`
+            )}
           </span>
         </div>
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1">
-            <Star className="h-4 w-4 fill-star text-star" />
-            <span className="text-sm font-bold text-card-foreground">{instructor.score}</span>
-          </div>
-          <div className="flex items-center gap-1 text-muted-foreground">
-            <MessageSquare className="h-3.5 w-3.5" />
-            <span className="text-xs">{instructor.reviewCount} reviews</span>
-          </div>
+          {instructor.isNew ? (
+            <span className="text-xs font-medium text-accent">No reviews yet — be the first!</span>
+          ) : (
+            <>
+              <div className="flex items-center gap-1">
+                <Star className="h-4 w-4 fill-star text-star" />
+                <span className="text-sm font-bold text-card-foreground">{instructor.score}</span>
+              </div>
+              <div className="flex items-center gap-1 text-muted-foreground">
+                <MessageSquare className="h-3.5 w-3.5" />
+                <span className="text-xs">{instructor.reviewCount} reviews</span>
+              </div>
+            </>
+          )}
         </div>
 
         <p className="text-xs text-muted-foreground line-clamp-2">{instructor.bio}</p>

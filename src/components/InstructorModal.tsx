@@ -27,12 +27,23 @@ const InstructorModal = ({ instructor, open, onClose }: InstructorModalProps) =>
           <div className="absolute bottom-4 left-4">
             <h2 className="font-display text-2xl font-bold text-primary-foreground drop-shadow-lg">{instructor.name}</h2>
             <div className="mt-1 flex items-center gap-2">
-              <Star className="h-4 w-4 fill-star text-star" />
-              <span className="text-sm font-bold text-primary-foreground">{instructor.score}</span>
-              <span className="text-sm text-primary-foreground/80">·</span>
-              <span className="text-sm text-primary-foreground/80">{instructor.reviewCount} reviews</span>
-              <span className="text-sm text-primary-foreground/80">·</span>
-              <span className="text-sm font-bold text-primary-foreground">${instructor.hourlyRate}/hr</span>
+              {!instructor.isNew && (
+                <>
+                  <Star className="h-4 w-4 fill-star text-star" />
+                  <span className="text-sm font-bold text-primary-foreground">{instructor.score}</span>
+                  <span className="text-sm text-primary-foreground/80">·</span>
+                  <span className="text-sm text-primary-foreground/80">{instructor.reviewCount} reviews</span>
+                  <span className="text-sm text-primary-foreground/80">·</span>
+                </>
+              )}
+              {instructor.discountRate ? (
+                <>
+                  <span className="text-sm text-primary-foreground/60 line-through">${instructor.hourlyRate}/hr</span>
+                  <span className="text-sm font-bold text-primary-foreground">${instructor.discountRate}/hr</span>
+                </>
+              ) : (
+                <span className="text-sm font-bold text-primary-foreground">${instructor.hourlyRate}/hr</span>
+              )}
             </div>
           </div>
         </div>
@@ -52,26 +63,33 @@ const InstructorModal = ({ instructor, open, onClose }: InstructorModalProps) =>
             </div>
           </div>
 
-          <div>
-            <h4 className="text-sm font-bold text-card-foreground mb-3 flex items-center gap-1.5">
-              <MessageSquare className="h-4 w-4" /> Reviews
-            </h4>
-            <div className="space-y-3">
-              {instructor.reviews.map((review, i) => (
-                <div key={i} className="rounded-lg bg-secondary p-3">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-sm font-bold text-secondary-foreground">{review.author}</span>
-                    <div className="flex gap-0.5">
-                      {Array.from({ length: review.rating }).map((_, j) => (
-                        <Star key={j} className="h-3 w-3 fill-star text-star" />
-                      ))}
+          {instructor.reviews.length > 0 ? (
+            <div>
+              <h4 className="text-sm font-bold text-card-foreground mb-3 flex items-center gap-1.5">
+                <MessageSquare className="h-4 w-4" /> Reviews
+              </h4>
+              <div className="space-y-3">
+                {instructor.reviews.map((review, i) => (
+                  <div key={i} className="rounded-lg bg-secondary p-3">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-sm font-bold text-secondary-foreground">{review.author}</span>
+                      <div className="flex gap-0.5">
+                        {Array.from({ length: review.rating }).map((_, j) => (
+                          <Star key={j} className="h-3 w-3 fill-star text-star" />
+                        ))}
+                      </div>
                     </div>
+                    <p className="text-xs text-muted-foreground">{review.text}</p>
                   </div>
-                  <p className="text-xs text-muted-foreground">{review.text}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="rounded-lg bg-accent/10 border border-accent/20 p-4 text-center">
+              <p className="text-sm font-medium text-accent">🌟 New instructor — no reviews yet</p>
+              <p className="text-xs text-muted-foreground mt-1">Book a session and be the first to leave a review!</p>
+            </div>
+          )}
 
           <button className="mt-1 w-full rounded-lg bg-primary py-3 text-sm font-bold text-primary-foreground transition-colors hover:opacity-90">
             Book a Session

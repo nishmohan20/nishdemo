@@ -21,6 +21,7 @@ export interface Instructor {
   isNew: boolean;
   bio: string;
   hourlyRate: number;
+  discountRate?: number;
   reviews: Review[];
 }
 
@@ -59,15 +60,14 @@ export const instructors: Instructor[] = [
     id: "3",
     name: "Alex Rivera",
     photo: instructor3,
-    score: 4.7,
-    reviewCount: 64,
+    score: 0,
+    reviewCount: 0,
     skills: ["Python", "React", "Data Science"],
     isNew: true,
     bio: "Full-stack developer and former Google engineer. Passionate about teaching the next generation of coders.",
     hourlyRate: 60,
-    reviews: [
-      { author: "Mia K.", text: "Alex makes coding feel approachable. Built my first app in 2 weeks!", rating: 5 },
-    ],
+    discountRate: 39,
+    reviews: [],
   },
   {
     id: "4",
@@ -88,29 +88,26 @@ export const instructors: Instructor[] = [
     id: "5",
     name: "Maya Johnson",
     photo: instructor5,
-    score: 4.6,
-    reviewCount: 38,
+    score: 0,
+    reviewCount: 0,
     skills: ["Yoga", "HIIT", "Nutrition"],
     isNew: true,
     bio: "Certified yoga instructor and personal trainer. 500-hour RYT with a holistic wellness approach.",
     hourlyRate: 35,
-    reviews: [
-      { author: "Sam T.", text: "Maya's classes are the highlight of my week. So energizing!", rating: 5 },
-    ],
+    discountRate: 22,
+    reviews: [],
   },
   {
     id: "6",
     name: "Marcus Laurent",
     photo: instructor6,
-    score: 4.8,
-    reviewCount: 73,
+    score: 0,
+    reviewCount: 0,
     skills: ["French", "Spanish", "ESL"],
     isNew: true,
     bio: "Polyglot fluent in 5 languages. Former translator for the UN. Conversational teaching method.",
     hourlyRate: 50,
-    reviews: [
-      { author: "Olivia P.", text: "My French improved dramatically in just one month with Marcus.", rating: 5 },
-      { author: "Diego M.", text: "Fun and engaging lessons. Never a dull moment.", rating: 4 },
-    ],
+    discountRate: 32,
+    reviews: [],
   },
 ];
