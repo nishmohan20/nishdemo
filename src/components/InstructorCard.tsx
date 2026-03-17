@@ -34,7 +34,14 @@ const InstructorCard = ({ instructor, onClick }: InstructorCardProps) => {
             {instructor.name}
           </h3>
           <span className="rounded-lg bg-card/90 px-2 py-1 text-sm font-bold text-card-foreground backdrop-blur-sm">
-            ${instructor.hourlyRate}/hr
+            {instructor.discountRate ? (
+              <span className="flex items-center gap-1.5">
+                <span className="text-muted-foreground line-through text-xs">${instructor.hourlyRate}</span>
+                <span className="text-primary">${instructor.discountRate}/hr</span>
+              </span>
+            ) : (
+              `$${instructor.hourlyRate}/hr`
+            )}
           </span>
         </div>
       </div>
