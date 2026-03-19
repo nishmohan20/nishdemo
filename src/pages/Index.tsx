@@ -47,6 +47,8 @@ const Index = () => {
       <HeroSection searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
       <main className="container mx-auto px-4 py-10">
+        <PromoBanner onInstructorClick={setSelectedInstructor} />
+
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <FilterBar active={activeCategory} onSelect={setActiveCategory} />
           <p className="text-sm text-muted-foreground">
