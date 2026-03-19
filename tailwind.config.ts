@@ -56,6 +56,13 @@ export default {
           DEFAULT: "hsl(var(--badge-new))",
           foreground: "hsl(var(--badge-new-foreground))",
         },
+        verified: {
+          DEFAULT: "hsl(var(--verified))",
+          foreground: "hsl(var(--verified-foreground))",
+        },
+        guarantee: {
+          DEFAULT: "hsl(var(--guarantee))",
+          foreground: "hsl(var(--guarantee-foreground))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
