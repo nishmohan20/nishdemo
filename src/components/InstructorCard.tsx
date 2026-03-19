@@ -39,7 +39,7 @@ const InstructorCard = ({ instructor, onClick }: InstructorCardProps) => {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent" />
         <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
-          <h3 className="font-display text-lg font-bold text-primary-foreground drop-shadow-md">
+          <h3 className="font-serif text-lg font-bold text-primary-foreground drop-shadow-md">
             {instructor.name}
           </h3>
           <span className="rounded-lg bg-card/90 px-2 py-1 text-sm font-bold text-card-foreground backdrop-blur-sm">

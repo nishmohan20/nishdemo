@@ -88,13 +88,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-body {
-  font-family: "DM Sans", sans-serif;
-}
-
-h1,
-h2,
-h3 {
-  font-family: "Playfair Display", serif;
-}

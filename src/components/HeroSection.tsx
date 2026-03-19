@@ -12,7 +12,7 @@ const HeroSection = ({ searchQuery, onSearchChange }: HeroSectionProps) => {
         backgroundImage: 'radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 50%, hsl(var(--accent) / 0.15) 0%, transparent 50%)'
       }} />
       <div className="container relative mx-auto px-4 text-center">
-        <h1 className="font-display text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+        <h1 className="font-serif text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl md:text-6xl">
           Find Your Perfect<br />
           <span className="text-primary">Instructor</span>
         </h1>
