@@ -1,4 +1,4 @@
-import { Star, MessageSquare, Sparkles, BadgeCheck, Clock, ShieldCheck } from "lucide-react";
+import { Star, MessageSquare, Sparkles, BadgeCheck, Clock, ShieldCheck, Eye, Fingerprint } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Instructor } from "@/data/instructors";
 
@@ -17,7 +17,7 @@ const InstructorCard = ({ instructor, onClick }: InstructorCardProps) => {
         <div className="absolute top-3 left-3 z-10">
           <span className="inline-flex items-center gap-1 rounded-full bg-badge-new px-2.5 py-1 text-xs font-bold text-badge-new-foreground shadow-sm">
             <Sparkles className="h-3 w-3" />
-            New
+            New · Vetted
           </span>
         </div>
       )}
@@ -58,7 +58,7 @@ const InstructorCard = ({ instructor, onClick }: InstructorCardProps) => {
       <div className="flex flex-1 flex-col gap-3 p-4">
         <div className="flex items-center gap-3 flex-wrap">
           {instructor.isNew ? (
-            <span className="text-xs font-medium text-accent">No reviews yet — be the first!</span>
+            <span className="text-xs font-medium text-accent">Be an early student — get the best rate!</span>
           ) : (
             <>
               <div className="flex items-center gap-1">
@@ -79,12 +79,27 @@ const InstructorCard = ({ instructor, onClick }: InstructorCardProps) => {
           )}
         </div>
 
-        {instructor.satisfactionGuarantee && (
-          <div className="flex items-center gap-1.5 rounded-md bg-guarantee/10 px-2 py-1 w-fit">
-            <ShieldCheck className="h-3.5 w-3.5 text-guarantee" />
-            <span className="text-xs font-medium text-guarantee">Satisfaction Guaranteed</span>
-          </div>
-        )}
+        {/* Trust signals row */}
+        <div className="flex items-center gap-2 flex-wrap">
+          {instructor.backgroundCheck && (
+            <div className="flex items-center gap-1 rounded-md bg-verified/10 px-2 py-0.5 w-fit">
+              <Fingerprint className="h-3 w-3 text-verified" />
+              <span className="text-xs font-medium text-verified">BG Check</span>
+            </div>
+          )}
+          {instructor.satisfactionGuarantee && (
+            <div className="flex items-center gap-1 rounded-md bg-guarantee/10 px-2 py-0.5 w-fit">
+              <ShieldCheck className="h-3.5 w-3.5 text-guarantee" />
+              <span className="text-xs font-medium text-guarantee">Guaranteed</span>
+            </div>
+          )}
+          {instructor.profileViews > 0 && (
+            <div className="flex items-center gap-1 text-muted-foreground">
+              <Eye className="h-3 w-3" />
+              <span className="text-xs">{instructor.profileViews.toLocaleString()} views</span>
+            </div>
+          )}
+        </div>
 
         <p className="text-xs text-muted-foreground line-clamp-2">{instructor.bio}</p>
 
