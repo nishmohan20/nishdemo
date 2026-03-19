@@ -31,7 +31,7 @@ const InstructorModal = ({ instructor, open, onClose }: InstructorModalProps) =>
             </span>
           )}
           <div className="absolute bottom-4 left-4">
-            <h2 className="font-display text-2xl font-bold text-primary-foreground drop-shadow-lg">{instructor.name}</h2>
+            <h2 className="font-serif text-2xl font-bold text-primary-foreground drop-shadow-lg">{instructor.name}</h2>
             <div className="mt-1 flex items-center gap-2 flex-wrap">
               {!instructor.isNew && (
                 <>
