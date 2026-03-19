@@ -8,44 +8,31 @@
   :root {
     --background: 40 33% 97%;
     --foreground: 220 20% 14%;
-
     --card: 0 0% 100%;
     --card-foreground: 220 20% 14%;
-
     --popover: 0 0% 100%;
     --popover-foreground: 220 20% 14%;
-
     --primary: 12 76% 61%;
     --primary-foreground: 0 0% 100%;
-
     --secondary: 40 25% 92%;
     --secondary-foreground: 220 20% 14%;
-
     --muted: 40 20% 94%;
     --muted-foreground: 220 10% 46%;
-
     --accent: 168 56% 45%;
     --accent-foreground: 0 0% 100%;
-
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 40 15% 88%;
     --input: 40 15% 88%;
     --ring: 12 76% 61%;
-
     --radius: 0.75rem;
-
     --badge-new: 48 96% 53%;
     --badge-new-foreground: 30 50% 16%;
-
     --star: 43 96% 56%;
-
     --verified: 210 80% 52%;
     --verified-foreground: 0 0% 100%;
     --guarantee: 152 60% 42%;
     --guarantee-foreground: 0 0% 100%;
-
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -98,18 +85,16 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground;
   }
+}
 
-  h1 {
-    @apply font-display;
-  }
+body {
+  font-family: "DM Sans", sans-serif;
+}
 
-  h2 {
-    @apply font-display;
-  }
-
-  h3 {
-    @apply font-display;
-  }
+h1,
+h2,
+h3 {
+  font-family: "Playfair Display", serif;
 }
