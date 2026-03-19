@@ -133,6 +133,10 @@ export const instructors: Instructor[] = [
     workSamples: [
       { title: "Watercolor Landscapes Series", description: "Collection of 20 works exhibited at NY Gallery" },
     ],
+    backgroundCheck: true,
+    profileViews: 1567,
+    totalBookings: 78,
+    whyChooseMe: "Art isn't about talent — it's about seeing. I'll teach you to observe the world differently, and the art follows naturally.",
   },
   {
     id: "5",
