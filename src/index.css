@@ -41,6 +41,11 @@
 
     --star: 43 96% 56%;
 
+    --verified: 210 80% 52%;
+    --verified-foreground: 0 0% 100%;
+    --guarantee: 152 60% 42%;
+    --guarantee-foreground: 0 0% 100%;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -74,6 +79,10 @@
     --badge-new: 48 96% 53%;
     --badge-new-foreground: 30 50% 16%;
     --star: 43 96% 56%;
+    --verified: 210 80% 60%;
+    --verified-foreground: 0 0% 100%;
+    --guarantee: 152 60% 50%;
+    --guarantee-foreground: 0 0% 100%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
