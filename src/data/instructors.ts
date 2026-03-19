@@ -108,6 +108,10 @@ export const instructors: Instructor[] = [
       { title: "React Dashboard Project", description: "Built a real-time analytics dashboard used by 50k+ users" },
       { title: "Python ML Pipeline", description: "End-to-end machine learning pipeline for production" },
     ],
+    backgroundCheck: true,
+    profileViews: 412,
+    totalBookings: 3,
+    whyChooseMe: "I teach the way I wish someone taught me — with real projects, not textbook exercises. You'll build portfolio-ready work from day one.",
   },
   {
     id: "4",
