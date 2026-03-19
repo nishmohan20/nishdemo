@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import FilterBar from "@/components/FilterBar";
 import InstructorCard from "@/components/InstructorCard";
 import InstructorModal from "@/components/InstructorModal";
+import PromoBanner from "@/components/PromoBanner";
 import { instructors, type Instructor } from "@/data/instructors";
 
 const categoryMap: Record<string, string[]> = {
