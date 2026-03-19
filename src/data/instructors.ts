@@ -156,6 +156,10 @@ export const instructors: Instructor[] = [
     workSamples: [
       { title: "30-Day Wellness Program", description: "Holistic program combining yoga, HIIT, and nutrition plans" },
     ],
+    backgroundCheck: true,
+    profileViews: 328,
+    totalBookings: 5,
+    whyChooseMe: "Fitness should feel empowering, not punishing. I create sustainable routines that fit your life, not the other way around.",
   },
   {
     id: "6",
