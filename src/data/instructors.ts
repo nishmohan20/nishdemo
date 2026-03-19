@@ -84,6 +84,10 @@ export const instructors: Instructor[] = [
     workSamples: [
       { title: "Calculus Crash Course", description: "Intensive exam-prep series covering all core topics" },
     ],
+    backgroundCheck: true,
+    profileViews: 987,
+    totalBookings: 64,
+    whyChooseMe: "I've helped 200+ students go from failing to acing their exams. I focus on building intuition, not just memorizing formulas.",
   },
   {
     id: "3",
