@@ -7,9 +7,10 @@ interface InstructorModalProps {
   instructor: Instructor | null;
   open: boolean;
   onClose: () => void;
+  onBook: (instructor: Instructor) => void;
 }
 
-const InstructorModal = ({ instructor, open, onClose }: InstructorModalProps) => {
+const InstructorModal = ({ instructor, open, onClose, onBook }: InstructorModalProps) => {
   if (!instructor) return null;
 
   return (
@@ -91,7 +92,6 @@ const InstructorModal = ({ instructor, open, onClose }: InstructorModalProps) =>
             </div>
           </div>
 
-          {/* Work Samples */}
           {instructor.workSamples.length > 0 && (
             <div>
               <h4 className="text-sm font-bold text-card-foreground mb-3 flex items-center gap-1.5">
@@ -136,8 +136,11 @@ const InstructorModal = ({ instructor, open, onClose }: InstructorModalProps) =>
             </div>
           )}
 
-          <button className="mt-1 w-full rounded-lg bg-primary py-3 text-sm font-bold text-primary-foreground transition-colors hover:opacity-90">
-            Book a Session
+          <button
+            onClick={() => onBook(instructor)}
+            className="mt-1 w-full rounded-lg bg-primary py-3 text-sm font-bold text-primary-foreground transition-colors hover:opacity-90"
+          >
+            Book a Session — ${instructor.discountRate ?? instructor.hourlyRate}/hr
           </button>
         </div>
       </DialogContent>

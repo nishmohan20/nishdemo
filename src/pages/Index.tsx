@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import FilterBar from "@/components/FilterBar";
 import InstructorCard from "@/components/InstructorCard";
 import InstructorModal from "@/components/InstructorModal";
+import BookingModal from "@/components/BookingModal";
 import PromoBanner from "@/components/PromoBanner";
 import { instructors, type Instructor } from "@/data/instructors";
 
@@ -19,6 +20,7 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedInstructor, setSelectedInstructor] = useState<Instructor | null>(null);
+  const [bookingInstructor, setBookingInstructor] = useState<Instructor | null>(null);
 
   const filtered = useMemo(() => {
     let list = instructors;
@@ -38,9 +40,13 @@ const Index = () => {
       );
     }
 
-    // Sort: new instructors first
     return [...list].sort((a, b) => (a.isNew === b.isNew ? 0 : a.isNew ? -1 : 1));
   }, [searchQuery, activeCategory]);
+
+  const handleBook = (instructor: Instructor) => {
+    setSelectedInstructor(null);
+    setBookingInstructor(instructor);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -74,6 +80,13 @@ const Index = () => {
         instructor={selectedInstructor}
         open={!!selectedInstructor}
         onClose={() => setSelectedInstructor(null)}
+        onBook={handleBook}
+      />
+
+      <BookingModal
+        instructor={bookingInstructor}
+        open={!!bookingInstructor}
+        onClose={() => setBookingInstructor(null)}
       />
     </div>
   );
