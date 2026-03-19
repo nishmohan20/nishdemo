@@ -1,4 +1,4 @@
-import { Star, MessageSquare, Sparkles, BadgeCheck, Clock, ShieldCheck, Briefcase } from "lucide-react";
+import { Star, MessageSquare, Sparkles, BadgeCheck, Clock, ShieldCheck, Briefcase, Fingerprint, Eye, Users, Quote } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { Instructor } from "@/data/instructors";
@@ -15,14 +15,14 @@ const InstructorModal = ({ instructor, open, onClose, onBook }: InstructorModalP
 
   return (
     <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent className="max-w-lg p-0 overflow-hidden gap-0">
+      <DialogContent className="max-w-lg p-0 overflow-hidden gap-0 max-h-[90vh] overflow-y-auto">
         <div className="relative aspect-video overflow-hidden">
           <img src={instructor.photo} alt={instructor.name} className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent" />
           {instructor.isNew && (
             <span className="absolute top-4 left-4 inline-flex items-center gap-1 rounded-full bg-badge-new px-3 py-1 text-xs font-bold text-badge-new-foreground shadow">
               <Sparkles className="h-3 w-3" />
-              New Instructor
+              New · Platform Vetted
             </span>
           )}
           {instructor.verified && (
@@ -57,11 +57,17 @@ const InstructorModal = ({ instructor, open, onClose, onBook }: InstructorModalP
 
         <div className="flex flex-col gap-5 p-6">
           {/* Trust signals bar */}
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-2">
             {instructor.verified && (
               <div className="flex items-center gap-1.5 rounded-full bg-verified/10 px-3 py-1.5">
                 <BadgeCheck className="h-4 w-4 text-verified" />
                 <span className="text-xs font-bold text-verified">ID Verified</span>
+              </div>
+            )}
+            {instructor.backgroundCheck && (
+              <div className="flex items-center gap-1.5 rounded-full bg-verified/10 px-3 py-1.5">
+                <Fingerprint className="h-4 w-4 text-verified" />
+                <span className="text-xs font-bold text-verified">Background Check</span>
               </div>
             )}
             {instructor.responseTime && (
@@ -78,10 +84,32 @@ const InstructorModal = ({ instructor, open, onClose, onBook }: InstructorModalP
             )}
           </div>
 
+          {/* Social proof stats */}
+          <div className="flex gap-4 rounded-lg bg-secondary/50 p-3">
+            <div className="flex items-center gap-1.5">
+              <Eye className="h-4 w-4 text-muted-foreground" />
+              <span className="text-xs font-medium text-secondary-foreground">{instructor.profileViews.toLocaleString()} profile views</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Users className="h-4 w-4 text-muted-foreground" />
+              <span className="text-xs font-medium text-secondary-foreground">{instructor.totalBookings} sessions booked</span>
+            </div>
+          </div>
+
           <div>
             <h4 className="text-sm font-bold text-card-foreground mb-1">About</h4>
             <p className="text-sm text-muted-foreground">{instructor.bio}</p>
           </div>
+
+          {/* Why Choose Me */}
+          {instructor.whyChooseMe && (
+            <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
+              <h4 className="text-sm font-bold text-card-foreground mb-2 flex items-center gap-1.5">
+                <Quote className="h-4 w-4 text-primary" /> Why Choose Me
+              </h4>
+              <p className="text-sm text-muted-foreground italic">"{instructor.whyChooseMe}"</p>
+            </div>
+          )}
 
           <div>
             <h4 className="text-sm font-bold text-card-foreground mb-2">Skills</h4>
@@ -136,12 +164,40 @@ const InstructorModal = ({ instructor, open, onClose, onBook }: InstructorModalP
             </div>
           )}
 
-          <button
-            onClick={() => onBook(instructor)}
-            className="mt-1 w-full rounded-lg bg-primary py-3 text-sm font-bold text-primary-foreground transition-colors hover:opacity-90"
-          >
-            Book a Session — ${instructor.discountRate ?? instructor.hourlyRate}/hr
-          </button>
+          {/* New Provider Guarantee for zero-review instructors */}
+          {instructor.isNew && instructor.satisfactionGuarantee && (
+            <div className="rounded-xl border-2 border-guarantee/30 bg-gradient-to-r from-guarantee/5 to-guarantee/10 p-4 space-y-2">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5 text-guarantee" />
+                <h4 className="text-sm font-bold text-guarantee">New Provider Guarantee</h4>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Not satisfied? Get a <span className="font-bold text-guarantee">full refund</span> or we'll match you with another instructor at no extra cost. Zero risk for you.
+              </p>
+            </div>
+          )}
+
+          {/* Book with Confidence CTA */}
+          <div className="sticky bottom-0 bg-card pt-2 pb-1 -mx-6 px-6 border-t border-border">
+            <button
+              onClick={() => onBook(instructor)}
+              className="w-full rounded-lg bg-primary py-3 text-sm font-bold text-primary-foreground transition-colors hover:opacity-90"
+            >
+              Book with Confidence — ${instructor.discountRate ?? instructor.hourlyRate}/hr
+            </button>
+            <div className="flex items-center justify-center gap-3 mt-2 mb-1">
+              {instructor.satisfactionGuarantee && (
+                <span className="text-xs text-guarantee font-medium flex items-center gap-1">
+                  <ShieldCheck className="h-3 w-3" /> Money-back guarantee
+                </span>
+              )}
+              {instructor.verified && (
+                <span className="text-xs text-verified font-medium flex items-center gap-1">
+                  <BadgeCheck className="h-3 w-3" /> Verified
+                </span>
+              )}
+            </div>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

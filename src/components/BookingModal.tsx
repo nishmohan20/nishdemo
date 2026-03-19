@@ -224,7 +224,7 @@ const BookingModal = ({ instructor, open, onClose }: BookingModalProps) => {
             <div className="text-center space-y-2">
               <h3 className="text-base font-bold text-card-foreground">Rate Your Experience</h3>
               <p className="text-xs text-muted-foreground">
-                Your review helps other students find great instructors
+                Help others trust great providers — your review makes a difference
               </p>
             </div>
 
@@ -267,6 +267,11 @@ const BookingModal = ({ instructor, open, onClose }: BookingModalProps) => {
               rows={3}
               className="w-full rounded-lg border border-border bg-card p-3 text-sm text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
             />
+
+            {/* Review incentive */}
+            <div className="rounded-lg bg-badge-new/10 border border-badge-new/20 p-3 text-center">
+              <p className="text-xs font-bold text-badge-new-foreground">🎁 Leave a review and get <span className="text-primary">10% off</span> your next booking!</p>
+            </div>
 
             <button
               disabled={reviewRating === 0}
