@@ -11,6 +11,11 @@ export interface Review {
   rating: number;
 }
 
+export interface WorkSample {
+  title: string;
+  description: string;
+}
+
 export interface Instructor {
   id: string;
   name: string;
@@ -23,6 +28,10 @@ export interface Instructor {
   hourlyRate: number;
   discountRate?: number;
   reviews: Review[];
+  verified: boolean;
+  responseTime?: string;
+  satisfactionGuarantee: boolean;
+  workSamples: WorkSample[];
 }
 
 export const instructors: Instructor[] = [
@@ -40,6 +49,12 @@ export const instructors: Instructor[] = [
       { author: "Emma W.", text: "Sarah made learning piano so fun and intuitive. Highly recommend!", rating: 5 },
       { author: "Jake R.", text: "Excellent teacher, very patient with beginners.", rating: 5 },
     ],
+    verified: true,
+    responseTime: "< 1 hour",
+    satisfactionGuarantee: true,
+    workSamples: [
+      { title: "Beginner Piano Curriculum", description: "Structured 12-week program from zero to confident player" },
+    ],
   },
   {
     id: "2",
@@ -55,6 +70,12 @@ export const instructors: Instructor[] = [
       { author: "Priya S.", text: "David helped me ace my calculus final. Clear explanations.", rating: 5 },
       { author: "Tom L.", text: "Great at breaking down tough problems step by step.", rating: 4 },
     ],
+    verified: true,
+    responseTime: "< 2 hours",
+    satisfactionGuarantee: true,
+    workSamples: [
+      { title: "Calculus Crash Course", description: "Intensive exam-prep series covering all core topics" },
+    ],
   },
   {
     id: "3",
@@ -68,6 +89,13 @@ export const instructors: Instructor[] = [
     hourlyRate: 60,
     discountRate: 39,
     reviews: [],
+    verified: true,
+    responseTime: "< 30 min",
+    satisfactionGuarantee: true,
+    workSamples: [
+      { title: "React Dashboard Project", description: "Built a real-time analytics dashboard used by 50k+ users" },
+      { title: "Python ML Pipeline", description: "End-to-end machine learning pipeline for production" },
+    ],
   },
   {
     id: "4",
@@ -83,6 +111,12 @@ export const instructors: Instructor[] = [
       { author: "Chris D.", text: "Luna's watercolor workshop was transformative. So inspiring!", rating: 5 },
       { author: "Nina B.", text: "Patient, encouraging, and incredibly talented.", rating: 5 },
     ],
+    verified: true,
+    responseTime: "< 3 hours",
+    satisfactionGuarantee: false,
+    workSamples: [
+      { title: "Watercolor Landscapes Series", description: "Collection of 20 works exhibited at NY Gallery" },
+    ],
   },
   {
     id: "5",
@@ -96,6 +130,12 @@ export const instructors: Instructor[] = [
     hourlyRate: 35,
     discountRate: 22,
     reviews: [],
+    verified: true,
+    responseTime: "< 1 hour",
+    satisfactionGuarantee: true,
+    workSamples: [
+      { title: "30-Day Wellness Program", description: "Holistic program combining yoga, HIIT, and nutrition plans" },
+    ],
   },
   {
     id: "6",
@@ -109,5 +149,12 @@ export const instructors: Instructor[] = [
     hourlyRate: 50,
     discountRate: 32,
     reviews: [],
+    verified: true,
+    responseTime: "< 45 min",
+    satisfactionGuarantee: true,
+    workSamples: [
+      { title: "Conversational French Course", description: "Immersive method used by 200+ students to reach B2 level" },
+      { title: "UN Translation Portfolio", description: "5 years of professional multilingual translation work" },
+    ],
   },
 ];

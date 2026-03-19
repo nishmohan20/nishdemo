@@ -41,6 +41,11 @@
 
     --star: 43 96% 56%;
 
+    --verified: 210 80% 52%;
+    --verified-foreground: 0 0% 100%;
+    --guarantee: 152 60% 42%;
+    --guarantee-foreground: 0 0% 100%;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;

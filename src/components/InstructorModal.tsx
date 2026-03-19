@@ -1,4 +1,4 @@
-import { Star, X, MessageSquare, Sparkles } from "lucide-react";
+import { Star, MessageSquare, Sparkles, BadgeCheck, Clock, ShieldCheck, Briefcase } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { Instructor } from "@/data/instructors";
@@ -24,9 +24,15 @@ const InstructorModal = ({ instructor, open, onClose }: InstructorModalProps) =>
               New Instructor
             </span>
           )}
+          {instructor.verified && (
+            <span className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-full bg-verified px-3 py-1 text-xs font-bold text-verified-foreground shadow">
+              <BadgeCheck className="h-3 w-3" />
+              Verified
+            </span>
+          )}
           <div className="absolute bottom-4 left-4">
             <h2 className="font-display text-2xl font-bold text-primary-foreground drop-shadow-lg">{instructor.name}</h2>
-            <div className="mt-1 flex items-center gap-2">
+            <div className="mt-1 flex items-center gap-2 flex-wrap">
               {!instructor.isNew && (
                 <>
                   <Star className="h-4 w-4 fill-star text-star" />
@@ -49,6 +55,28 @@ const InstructorModal = ({ instructor, open, onClose }: InstructorModalProps) =>
         </div>
 
         <div className="flex flex-col gap-5 p-6">
+          {/* Trust signals bar */}
+          <div className="flex flex-wrap gap-3">
+            {instructor.verified && (
+              <div className="flex items-center gap-1.5 rounded-full bg-verified/10 px-3 py-1.5">
+                <BadgeCheck className="h-4 w-4 text-verified" />
+                <span className="text-xs font-bold text-verified">ID Verified</span>
+              </div>
+            )}
+            {instructor.responseTime && (
+              <div className="flex items-center gap-1.5 rounded-full bg-secondary px-3 py-1.5">
+                <Clock className="h-4 w-4 text-muted-foreground" />
+                <span className="text-xs font-medium text-secondary-foreground">Responds {instructor.responseTime}</span>
+              </div>
+            )}
+            {instructor.satisfactionGuarantee && (
+              <div className="flex items-center gap-1.5 rounded-full bg-guarantee/10 px-3 py-1.5">
+                <ShieldCheck className="h-4 w-4 text-guarantee" />
+                <span className="text-xs font-bold text-guarantee">100% Satisfaction Guarantee</span>
+              </div>
+            )}
+          </div>
+
           <div>
             <h4 className="text-sm font-bold text-card-foreground mb-1">About</h4>
             <p className="text-sm text-muted-foreground">{instructor.bio}</p>
@@ -62,6 +90,23 @@ const InstructorModal = ({ instructor, open, onClose }: InstructorModalProps) =>
               ))}
             </div>
           </div>
+
+          {/* Work Samples */}
+          {instructor.workSamples.length > 0 && (
+            <div>
+              <h4 className="text-sm font-bold text-card-foreground mb-3 flex items-center gap-1.5">
+                <Briefcase className="h-4 w-4" /> Work Samples
+              </h4>
+              <div className="space-y-2">
+                {instructor.workSamples.map((sample, i) => (
+                  <div key={i} className="rounded-lg border border-border bg-secondary/50 p-3">
+                    <p className="text-sm font-bold text-secondary-foreground">{sample.title}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{sample.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {instructor.reviews.length > 0 ? (
             <div>
