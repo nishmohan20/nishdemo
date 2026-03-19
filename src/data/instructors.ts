@@ -32,6 +32,10 @@ export interface Instructor {
   responseTime?: string;
   satisfactionGuarantee: boolean;
   workSamples: WorkSample[];
+  backgroundCheck: boolean;
+  profileViews: number;
+  totalBookings: number;
+  whyChooseMe?: string;
 }
 
 export const instructors: Instructor[] = [
