@@ -59,6 +59,10 @@ export const instructors: Instructor[] = [
     workSamples: [
       { title: "Beginner Piano Curriculum", description: "Structured 12-week program from zero to confident player" },
     ],
+    backgroundCheck: true,
+    profileViews: 1243,
+    totalBookings: 89,
+    whyChooseMe: "I tailor every lesson to your pace and goals. Whether you're 8 or 80, I'll have you playing your favorite songs within weeks.",
   },
   {
     id: "2",
