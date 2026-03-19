@@ -180,5 +180,9 @@ export const instructors: Instructor[] = [
       { title: "Conversational French Course", description: "Immersive method used by 200+ students to reach B2 level" },
       { title: "UN Translation Portfolio", description: "5 years of professional multilingual translation work" },
     ],
+    backgroundCheck: true,
+    profileViews: 289,
+    totalBookings: 7,
+    whyChooseMe: "Forget boring grammar drills. I use immersive conversation from lesson one — you'll be ordering coffee in French by week two.",
   },
 ];
