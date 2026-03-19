@@ -32,6 +32,10 @@ export interface Instructor {
   responseTime?: string;
   satisfactionGuarantee: boolean;
   workSamples: WorkSample[];
+  backgroundCheck: boolean;
+  profileViews: number;
+  totalBookings: number;
+  whyChooseMe?: string;
 }
 
 export const instructors: Instructor[] = [
@@ -55,6 +59,10 @@ export const instructors: Instructor[] = [
     workSamples: [
       { title: "Beginner Piano Curriculum", description: "Structured 12-week program from zero to confident player" },
     ],
+    backgroundCheck: true,
+    profileViews: 1243,
+    totalBookings: 89,
+    whyChooseMe: "I tailor every lesson to your pace and goals. Whether you're 8 or 80, I'll have you playing your favorite songs within weeks.",
   },
   {
     id: "2",
@@ -76,6 +84,10 @@ export const instructors: Instructor[] = [
     workSamples: [
       { title: "Calculus Crash Course", description: "Intensive exam-prep series covering all core topics" },
     ],
+    backgroundCheck: true,
+    profileViews: 987,
+    totalBookings: 64,
+    whyChooseMe: "I've helped 200+ students go from failing to acing their exams. I focus on building intuition, not just memorizing formulas.",
   },
   {
     id: "3",
@@ -96,6 +108,10 @@ export const instructors: Instructor[] = [
       { title: "React Dashboard Project", description: "Built a real-time analytics dashboard used by 50k+ users" },
       { title: "Python ML Pipeline", description: "End-to-end machine learning pipeline for production" },
     ],
+    backgroundCheck: true,
+    profileViews: 412,
+    totalBookings: 3,
+    whyChooseMe: "I teach the way I wish someone taught me — with real projects, not textbook exercises. You'll build portfolio-ready work from day one.",
   },
   {
     id: "4",
@@ -117,6 +133,10 @@ export const instructors: Instructor[] = [
     workSamples: [
       { title: "Watercolor Landscapes Series", description: "Collection of 20 works exhibited at NY Gallery" },
     ],
+    backgroundCheck: true,
+    profileViews: 1567,
+    totalBookings: 78,
+    whyChooseMe: "Art isn't about talent — it's about seeing. I'll teach you to observe the world differently, and the art follows naturally.",
   },
   {
     id: "5",
@@ -136,6 +156,10 @@ export const instructors: Instructor[] = [
     workSamples: [
       { title: "30-Day Wellness Program", description: "Holistic program combining yoga, HIIT, and nutrition plans" },
     ],
+    backgroundCheck: true,
+    profileViews: 328,
+    totalBookings: 5,
+    whyChooseMe: "Fitness should feel empowering, not punishing. I create sustainable routines that fit your life, not the other way around.",
   },
   {
     id: "6",
@@ -156,5 +180,9 @@ export const instructors: Instructor[] = [
       { title: "Conversational French Course", description: "Immersive method used by 200+ students to reach B2 level" },
       { title: "UN Translation Portfolio", description: "5 years of professional multilingual translation work" },
     ],
+    backgroundCheck: true,
+    profileViews: 289,
+    totalBookings: 7,
+    whyChooseMe: "Forget boring grammar drills. I use immersive conversation from lesson one — you'll be ordering coffee in French by week two.",
   },
 ];
