@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CalendarDays, Clock, CheckCircle2, ShieldCheck, ArrowLeft } from "lucide-react";
+import { CalendarDays, Clock, CheckCircle2, ShieldCheck, ArrowLeft, Star, MessageSquare } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { Instructor } from "@/data/instructors";
 
@@ -23,12 +23,16 @@ const days = [
   { label: "Fri", date: "Mar 28" },
 ];
 
-type Step = "select" | "confirm" | "done";
+type Step = "select" | "confirm" | "done" | "review";
 
 const BookingModal = ({ instructor, open, onClose }: BookingModalProps) => {
   const [step, setStep] = useState<Step>("select");
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [reviewRating, setReviewRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [reviewText, setReviewText] = useState("");
+  const [reviewSubmitted, setReviewSubmitted] = useState(false);
 
   if (!instructor) return null;
 
@@ -38,6 +42,10 @@ const BookingModal = ({ instructor, open, onClose }: BookingModalProps) => {
     setStep("select");
     setSelectedDay(null);
     setSelectedTime(null);
+    setReviewRating(0);
+    setHoverRating(0);
+    setReviewText("");
+    setReviewSubmitted(false);
     onClose();
   };
 
@@ -46,7 +54,7 @@ const BookingModal = ({ instructor, open, onClose }: BookingModalProps) => {
       <DialogContent className="max-w-md p-0 overflow-hidden gap-0">
         {/* Header */}
         <div className="flex items-center gap-3 border-b border-border p-4">
-          {step !== "select" && step !== "done" && (
+          {(step === "confirm") && (
             <button onClick={() => setStep("select")} className="text-muted-foreground hover:text-foreground">
               <ArrowLeft className="h-4 w-4" />
             </button>
@@ -54,9 +62,11 @@ const BookingModal = ({ instructor, open, onClose }: BookingModalProps) => {
           <img src={instructor.photo} alt={instructor.name} className="h-10 w-10 rounded-full object-cover" />
           <div className="flex-1 min-w-0">
             <p className="text-sm font-bold text-card-foreground truncate">{instructor.name}</p>
-            <p className="text-xs text-muted-foreground">${rate}/hr session</p>
+            <p className="text-xs text-muted-foreground">
+              {step === "review" ? "How was your session?" : `$${rate}/hr session`}
+            </p>
           </div>
-          {instructor.satisfactionGuarantee && (
+          {instructor.satisfactionGuarantee && step !== "review" && (
             <span className="inline-flex items-center gap-1 rounded-full bg-guarantee/10 px-2 py-1 text-xs font-medium text-guarantee">
               <ShieldCheck className="h-3 w-3" />
               Guaranteed
@@ -188,6 +198,115 @@ const BookingModal = ({ instructor, open, onClose }: BookingModalProps) => {
             <p className="text-xs text-muted-foreground">
               You&apos;ll receive a confirmation email with session details and a link to join.
             </p>
+            <div className="space-y-2 pt-2">
+              <button
+                onClick={() => setStep("review")}
+                className="w-full rounded-lg bg-primary py-3 text-sm font-bold text-primary-foreground transition-colors hover:opacity-90"
+              >
+                <span className="flex items-center justify-center gap-2">
+                  <MessageSquare className="h-4 w-4" />
+                  Leave a Review After Your Session
+                </span>
+              </button>
+              <button
+                onClick={handleClose}
+                className="w-full rounded-lg bg-secondary py-2.5 text-sm font-medium text-secondary-foreground transition-colors hover:opacity-90"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step: Review */}
+        {step === "review" && !reviewSubmitted && (
+          <div className="p-5 space-y-5">
+            <div className="text-center space-y-2">
+              <h3 className="text-base font-bold text-card-foreground">Rate Your Experience</h3>
+              <p className="text-xs text-muted-foreground">
+                Your review helps other students find great instructors
+              </p>
+            </div>
+
+            {/* Star rating */}
+            <div className="flex justify-center gap-2">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  onClick={() => setReviewRating(star)}
+                  onMouseEnter={() => setHoverRating(star)}
+                  onMouseLeave={() => setHoverRating(0)}
+                  className="transition-transform hover:scale-110"
+                >
+                  <Star
+                    className={`h-8 w-8 transition-colors ${
+                      star <= (hoverRating || reviewRating)
+                        ? "fill-star text-star"
+                        : "text-border"
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
+
+            {reviewRating > 0 && (
+              <p className="text-center text-xs font-medium text-muted-foreground">
+                {reviewRating === 5 && "Amazing! 🎉"}
+                {reviewRating === 4 && "Great experience! 😊"}
+                {reviewRating === 3 && "It was okay 👍"}
+                {reviewRating === 2 && "Could be better 😐"}
+                {reviewRating === 1 && "Not great 😞"}
+              </p>
+            )}
+
+            {/* Review text */}
+            <textarea
+              value={reviewText}
+              onChange={(e) => setReviewText(e.target.value)}
+              placeholder="Tell other students about your experience... (optional)"
+              rows={3}
+              className="w-full rounded-lg border border-border bg-card p-3 text-sm text-card-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring resize-none"
+            />
+
+            <button
+              disabled={reviewRating === 0}
+              onClick={() => setReviewSubmitted(true)}
+              className="w-full rounded-lg bg-primary py-3 text-sm font-bold text-primary-foreground transition-colors hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              Submit Review
+            </button>
+
+            <button
+              onClick={handleClose}
+              className="w-full text-xs text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Skip for now
+            </button>
+          </div>
+        )}
+
+        {/* Step: Review submitted */}
+        {step === "review" && reviewSubmitted && (
+          <div className="p-8 text-center space-y-4">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+              <Star className="h-8 w-8 fill-star text-star" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-card-foreground">Thanks for Your Review!</h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                Your feedback helps {instructor.name} grow and helps other students make confident choices.
+              </p>
+            </div>
+            <div className="flex justify-center gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star
+                  key={star}
+                  className={`h-5 w-5 ${
+                    star <= reviewRating ? "fill-star text-star" : "text-border"
+                  }`}
+                />
+              ))}
+            </div>
             <button
               onClick={handleClose}
               className="w-full rounded-lg bg-secondary py-3 text-sm font-bold text-secondary-foreground transition-colors hover:opacity-90"
