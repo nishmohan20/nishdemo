@@ -214,5 +214,9 @@ export const instructors: Instructor[] = [
     profileViews: 289,
     totalBookings: 7,
     whyChooseMe: "Forget boring grammar drills. I use immersive conversation from lesson one — you'll be ordering coffee in French by week two.",
+    recentProjects: [
+      { title: "French for Travel", description: "Prepared a couple for their 3-week trip to France with conversational French immersion.", category: "French", completedDate: "Mar 2026", duration: "5 weeks", studentName: "Jamie & Pat S.", outcome: "Successfully navigated Paris, ordered meals, and chatted with locals — entirely in French", thumbnail: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80" },
+      { title: "Business Spanish Intensive", description: "Coached an executive to deliver presentations and negotiate contracts in Spanish.", category: "Spanish", completedDate: "Jan 2026", duration: "8 weeks", studentName: "Robert K.", outcome: "Delivered first full client presentation in Spanish to a Latin American partner firm", thumbnail: "https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=600&q=80" },
+    ],
   },
 ];
