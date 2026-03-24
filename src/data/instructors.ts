@@ -161,6 +161,9 @@ export const instructors: Instructor[] = [
     profileViews: 1567,
     totalBookings: 78,
     whyChooseMe: "Art isn't about talent — it's about seeing. I'll teach you to observe the world differently, and the art follows naturally.",
+    recentProjects: [
+      { title: "Watercolor Portrait Series", description: "Guided a student through creating a 5-piece portrait collection using wet-on-wet techniques.", category: "Watercolor", completedDate: "Feb 2026", duration: "7 weeks", studentName: "Elena V.", outcome: "Artwork exhibited at a community art show and 2 pieces sold", thumbnail: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&q=80" },
+    ],
   },
   {
     id: "5",
