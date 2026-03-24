@@ -173,15 +173,21 @@ const BookingModal = ({ instructor, open, onClose }: BookingModalProps) => {
                 </div>
               </div>
             )}
-
-            <button
-              onClick={() => setStep("done")}
-              className="w-full rounded-lg bg-primary py-3 text-sm font-bold text-primary-foreground transition-colors hover:opacity-90"
-            >
-              Confirm Booking — ${rate}
-            </button>
-          </div>
-        )}
+            <div className="flex gap-2">
+              <button
+                onClick={() => {
+                  // Simulate random booking failure (20% chance) for prototype
+                  if (Math.random() < 0.2) {
+                    setStep("error");
+                  } else {
+                    setStep("done");
+                  }
+                }}
+                className="flex-1 rounded-lg bg-primary py-3 text-sm font-bold text-primary-foreground transition-colors hover:opacity-90"
+              >
+                Confirm Booking — ${rate}
+              </button>
+            </div>
 
         {/* Step: Done */}
         {step === "done" && (

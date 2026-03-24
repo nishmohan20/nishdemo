@@ -1,10 +1,12 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import HeroSection from "@/components/HeroSection";
 import FilterBar from "@/components/FilterBar";
 import InstructorCard from "@/components/InstructorCard";
 import InstructorModal from "@/components/InstructorModal";
 import BookingModal from "@/components/BookingModal";
 import PromoBanner from "@/components/PromoBanner";
+import EmptyState from "@/components/EmptyState";
+import { InstructorGridSkeleton } from "@/components/InstructorGridSkeleton";
 import { instructors, type Instructor } from "@/data/instructors";
 
 const categoryMap: Record<string, string[]> = {
@@ -21,6 +23,13 @@ const Index = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedInstructor, setSelectedInstructor] = useState<Instructor | null>(null);
   const [bookingInstructor, setBookingInstructor] = useState<Instructor | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate initial load
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1200);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filtered = useMemo(() => {
     let list = instructors;
@@ -48,6 +57,11 @@ const Index = () => {
     setBookingInstructor(instructor);
   };
 
+  const handleClearFilters = () => {
+    setSearchQuery("");
+    setActiveCategory("All");
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <HeroSection searchQuery={searchQuery} onSearchChange={setSearchQuery} />
@@ -58,15 +72,14 @@ const Index = () => {
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <FilterBar active={activeCategory} onSelect={setActiveCategory} />
           <p className="text-sm text-muted-foreground">
-            {filtered.length} instructor{filtered.length !== 1 ? "s" : ""} found
+            {isLoading ? "Loading..." : `${filtered.length} instructor${filtered.length !== 1 ? "s" : ""} found`}
           </p>
         </div>
 
-        {filtered.length === 0 ? (
-          <div className="py-20 text-center text-muted-foreground">
-            <p className="text-lg font-medium">No instructors found</p>
-            <p className="text-sm mt-1">Try adjusting your search or filters.</p>
-          </div>
+        {isLoading ? (
+          <InstructorGridSkeleton count={6} />
+        ) : filtered.length === 0 ? (
+          <EmptyState variant="no-results" onAction={handleClearFilters} />
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((instructor) => (
