@@ -47,6 +47,7 @@ export interface Instructor {
   profileViews: number;
   totalBookings: number;
   whyChooseMe?: string;
+  recentProjects: RecentProject[];
 }
 
 export const instructors: Instructor[] = [
