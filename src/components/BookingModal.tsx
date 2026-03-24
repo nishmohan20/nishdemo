@@ -23,7 +23,7 @@ const days = [
   { label: "Fri", date: "Mar 28" },
 ];
 
-type Step = "select" | "confirm" | "done" | "review";
+type Step = "select" | "confirm" | "done" | "review" | "error";
 
 const BookingModal = ({ instructor, open, onClose }: BookingModalProps) => {
   const [step, setStep] = useState<Step>("select");
