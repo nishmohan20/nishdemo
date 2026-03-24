@@ -16,6 +16,17 @@ export interface WorkSample {
   description: string;
 }
 
+export interface RecentProject {
+  title: string;
+  description: string;
+  category: string;
+  completedDate: string;
+  duration: string;
+  studentName: string;
+  outcome: string;
+  thumbnail: string;
+}
+
 export interface Instructor {
   id: string;
   name: string;
@@ -36,6 +47,7 @@ export interface Instructor {
   profileViews: number;
   totalBookings: number;
   whyChooseMe?: string;
+  recentProjects: RecentProject[];
 }
 
 export const instructors: Instructor[] = [
@@ -63,6 +75,10 @@ export const instructors: Instructor[] = [
     profileViews: 1243,
     totalBookings: 89,
     whyChooseMe: "I tailor every lesson to your pace and goals. Whether you're 8 or 80, I'll have you playing your favorite songs within weeks.",
+    recentProjects: [
+      { title: "Jazz Piano Foundations", description: "Taught a complete beginner to perform jazz standards at a local recital in 8 weeks.", category: "Piano", completedDate: "Feb 2026", duration: "8 weeks", studentName: "Maria K.", outcome: "Student performed at local jazz night and received standing ovation", thumbnail: "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=600&q=80" },
+      { title: "Music Theory for Songwriters", description: "Guided a songwriter through chord progressions, modes, and arrangement techniques.", category: "Music Theory", completedDate: "Jan 2026", duration: "6 weeks", studentName: "Jordan T.", outcome: "Student wrote and recorded their first original EP", thumbnail: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=600&q=80" },
+    ],
   },
   {
     id: "2",
@@ -88,6 +104,9 @@ export const instructors: Instructor[] = [
     profileViews: 987,
     totalBookings: 64,
     whyChooseMe: "I've helped 200+ students go from failing to acing their exams. I focus on building intuition, not just memorizing formulas.",
+    recentProjects: [
+      { title: "Calculus Exam Rescue", description: "Intensive 3-week prep that took a student from a D to an A- on their final exam.", category: "Calculus", completedDate: "Mar 2026", duration: "3 weeks", studentName: "Sam W.", outcome: "Grade improved from D to A- on final exam", thumbnail: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80" },
+    ],
   },
   {
     id: "3",
@@ -112,6 +131,11 @@ export const instructors: Instructor[] = [
     profileViews: 412,
     totalBookings: 3,
     whyChooseMe: "I teach the way I wish someone taught me — with real projects, not textbook exercises. You'll build portfolio-ready work from day one.",
+    recentProjects: [
+      { title: "Full-Stack Dashboard App", description: "Mentored a career-changer through building a real-time analytics dashboard with React and Python.", category: "React", completedDate: "Mar 2026", duration: "10 weeks", studentName: "Casey R.", outcome: "Student landed a junior developer role within 2 weeks of completing the project", thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" },
+      { title: "ML Price Predictor", description: "Built an end-to-end machine learning pipeline for real estate price prediction.", category: "Data Science", completedDate: "Feb 2026", duration: "6 weeks", studentName: "Aisha M.", outcome: "Project featured in student's portfolio and discussed in 3 job interviews", thumbnail: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&q=80" },
+      { title: "Python Automation Suite", description: "Created a suite of automation scripts to streamline a small business's daily operations.", category: "Python", completedDate: "Jan 2026", duration: "4 weeks", studentName: "Derek L.", outcome: "Saved the business 15 hours/week in manual data entry", thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=80" },
+    ],
   },
   {
     id: "4",
@@ -137,6 +161,9 @@ export const instructors: Instructor[] = [
     profileViews: 1567,
     totalBookings: 78,
     whyChooseMe: "Art isn't about talent — it's about seeing. I'll teach you to observe the world differently, and the art follows naturally.",
+    recentProjects: [
+      { title: "Watercolor Portrait Series", description: "Guided a student through creating a 5-piece portrait collection using wet-on-wet techniques.", category: "Watercolor", completedDate: "Feb 2026", duration: "7 weeks", studentName: "Elena V.", outcome: "Artwork exhibited at a community art show and 2 pieces sold", thumbnail: "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&q=80" },
+    ],
   },
   {
     id: "5",
@@ -160,6 +187,9 @@ export const instructors: Instructor[] = [
     profileViews: 328,
     totalBookings: 5,
     whyChooseMe: "Fitness should feel empowering, not punishing. I create sustainable routines that fit your life, not the other way around.",
+    recentProjects: [
+      { title: "30-Day Transformation Challenge", description: "Designed a personalized HIIT + yoga program for a busy professional looking to build sustainable fitness habits.", category: "HIIT", completedDate: "Mar 2026", duration: "4 weeks", studentName: "Tanya B.", outcome: "Lost 8 lbs and reported 40% improvement in energy levels", thumbnail: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" },
+    ],
   },
   {
     id: "6",
@@ -184,5 +214,9 @@ export const instructors: Instructor[] = [
     profileViews: 289,
     totalBookings: 7,
     whyChooseMe: "Forget boring grammar drills. I use immersive conversation from lesson one — you'll be ordering coffee in French by week two.",
+    recentProjects: [
+      { title: "French for Travel", description: "Prepared a couple for their 3-week trip to France with conversational French immersion.", category: "French", completedDate: "Mar 2026", duration: "5 weeks", studentName: "Jamie & Pat S.", outcome: "Successfully navigated Paris, ordered meals, and chatted with locals — entirely in French", thumbnail: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80" },
+      { title: "Business Spanish Intensive", description: "Coached an executive to deliver presentations and negotiate contracts in Spanish.", category: "Spanish", completedDate: "Jan 2026", duration: "8 weeks", studentName: "Robert K.", outcome: "Delivered first full client presentation in Spanish to a Latin American partner firm", thumbnail: "https://images.unsplash.com/photo-1543349689-9a4d426bee8e?w=600&q=80" },
+    ],
   },
 ];

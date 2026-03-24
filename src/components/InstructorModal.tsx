@@ -1,6 +1,8 @@
-import { Star, MessageSquare, Sparkles, BadgeCheck, Clock, ShieldCheck, Briefcase, Fingerprint, Eye, Users, Quote } from "lucide-react";
+import { useState } from "react";
+import { Star, MessageSquare, Sparkles, BadgeCheck, Clock, ShieldCheck, Briefcase, Fingerprint, Eye, Users, Quote, FolderOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import RecentProjects from "@/components/RecentProjects";
 import type { Instructor } from "@/data/instructors";
 
 interface InstructorModalProps {
@@ -11,10 +13,31 @@ interface InstructorModalProps {
 }
 
 const InstructorModal = ({ instructor, open, onClose, onBook }: InstructorModalProps) => {
+  const [showProjects, setShowProjects] = useState(false);
+
   if (!instructor) return null;
 
+  const handleClose = () => {
+    setShowProjects(false);
+    onClose();
+  };
+
+  if (showProjects) {
+    return (
+      <Dialog open={open} onOpenChange={(o) => !o && handleClose()}>
+        <DialogContent className="max-w-lg p-0 overflow-hidden gap-0 max-h-[90vh] overflow-y-auto">
+          <RecentProjects
+            projects={instructor.recentProjects}
+            instructorName={instructor.name}
+            onBack={() => setShowProjects(false)}
+          />
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
   return (
-    <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
+    <Dialog open={open} onOpenChange={(o) => !o && handleClose()}>
       <DialogContent className="max-w-lg p-0 overflow-hidden gap-0 max-h-[90vh] overflow-y-auto">
         <div className="relative aspect-video overflow-hidden">
           <img src={instructor.photo} alt={instructor.name} className="h-full w-full object-cover" />
@@ -120,6 +143,27 @@ const InstructorModal = ({ instructor, open, onClose, onBook }: InstructorModalP
             </div>
           </div>
 
+          {/* Recent Projects CTA */}
+          {instructor.recentProjects.length > 0 && (
+            <button
+              onClick={() => setShowProjects(true)}
+              className="flex items-center justify-between rounded-xl border border-border bg-secondary/30 p-4 transition-colors hover:bg-secondary/60 group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                  <FolderOpen className="h-5 w-5 text-primary" />
+                </div>
+                <div className="text-left">
+                  <p className="text-sm font-bold text-card-foreground">Recent Projects</p>
+                  <p className="text-xs text-muted-foreground">
+                    {instructor.recentProjects.length} completed project{instructor.recentProjects.length !== 1 ? "s" : ""} with outcomes
+                  </p>
+                </div>
+              </div>
+              <span className="text-xs font-medium text-primary group-hover:underline">View →</span>
+            </button>
+          )}
+
           {instructor.workSamples.length > 0 && (
             <div>
               <h4 className="text-sm font-bold text-card-foreground mb-3 flex items-center gap-1.5">
@@ -164,7 +208,6 @@ const InstructorModal = ({ instructor, open, onClose, onBook }: InstructorModalP
             </div>
           )}
 
-          {/* New Provider Guarantee for zero-review instructors */}
           {instructor.isNew && instructor.satisfactionGuarantee && (
             <div className="rounded-xl border-2 border-guarantee/30 bg-gradient-to-r from-guarantee/5 to-guarantee/10 p-4 space-y-2">
               <div className="flex items-center gap-2">
