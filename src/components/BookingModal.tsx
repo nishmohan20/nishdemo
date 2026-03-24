@@ -188,6 +188,37 @@ const BookingModal = ({ instructor, open, onClose }: BookingModalProps) => {
                 Confirm Booking — ${rate}
               </button>
             </div>
+          </div>
+        )}
+
+        {/* Step: Error */}
+        {step === "error" && (
+          <div className="p-8 text-center space-y-4">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-destructive/10">
+              <AlertTriangle className="h-7 w-7 text-destructive" />
+            </div>
+            <div className="space-y-1.5">
+              <h3 className="text-base font-bold text-card-foreground">Booking couldn't be completed</h3>
+              <p className="text-sm text-muted-foreground max-w-xs mx-auto">
+                The provider may be unavailable. Try another time or provider.
+              </p>
+            </div>
+            <div className="space-y-2 pt-2">
+              <button
+                onClick={() => setStep("select")}
+                className="w-full rounded-lg bg-primary py-3 text-sm font-bold text-primary-foreground transition-colors hover:opacity-90"
+              >
+                Try Another Time
+              </button>
+              <button
+                onClick={handleClose}
+                className="w-full rounded-lg bg-secondary py-2.5 text-sm font-medium text-secondary-foreground transition-colors hover:opacity-90"
+              >
+                Browse Other Providers
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Step: Done */}
         {step === "done" && (
