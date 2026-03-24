@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CalendarDays, Clock, CheckCircle2, ShieldCheck, ArrowLeft, Star, MessageSquare } from "lucide-react";
+import { CalendarDays, Clock, CheckCircle2, ShieldCheck, ArrowLeft, Star, MessageSquare, AlertTriangle } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { Instructor } from "@/data/instructors";
 
