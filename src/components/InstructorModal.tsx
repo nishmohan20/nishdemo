@@ -202,9 +202,9 @@ const InstructorModal = ({ instructor, open, onClose, onBook }: InstructorModalP
               </div>
             </div>
           ) : (
-            <div className="rounded-lg bg-accent/10 border border-accent/20 p-4 text-center">
-              <p className="text-sm font-medium text-accent">🌟 New instructor — no reviews yet</p>
-              <p className="text-xs text-muted-foreground mt-1">Book a session and be the first to leave a review!</p>
+            <div className="rounded-lg bg-guarantee/5 border border-guarantee/20 p-4 text-center space-y-1.5">
+              <p className="text-sm font-bold text-card-foreground">New to the platform</p>
+              <p className="text-xs text-muted-foreground">Book with our satisfaction guarantee — if you're not happy, get a full refund.</p>
             </div>
           )}
 
