@@ -104,6 +104,9 @@ export const instructors: Instructor[] = [
     profileViews: 987,
     totalBookings: 64,
     whyChooseMe: "I've helped 200+ students go from failing to acing their exams. I focus on building intuition, not just memorizing formulas.",
+    recentProjects: [
+      { title: "Calculus Exam Rescue", description: "Intensive 3-week prep that took a student from a D to an A- on their final exam.", category: "Calculus", completedDate: "Mar 2026", duration: "3 weeks", studentName: "Sam W.", outcome: "Grade improved from D to A- on final exam", thumbnail: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80" },
+    ],
   },
   {
     id: "3",
