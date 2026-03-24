@@ -16,6 +16,17 @@ export interface WorkSample {
   description: string;
 }
 
+export interface RecentProject {
+  title: string;
+  description: string;
+  category: string;
+  completedDate: string;
+  duration: string;
+  studentName: string;
+  outcome: string;
+  thumbnail: string;
+}
+
 export interface Instructor {
   id: string;
   name: string;
