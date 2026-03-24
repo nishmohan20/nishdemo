@@ -75,6 +75,10 @@ export const instructors: Instructor[] = [
     profileViews: 1243,
     totalBookings: 89,
     whyChooseMe: "I tailor every lesson to your pace and goals. Whether you're 8 or 80, I'll have you playing your favorite songs within weeks.",
+    recentProjects: [
+      { title: "Jazz Piano Foundations", description: "Taught a complete beginner to perform jazz standards at a local recital in 8 weeks.", category: "Piano", completedDate: "Feb 2026", duration: "8 weeks", studentName: "Maria K.", outcome: "Student performed at local jazz night and received standing ovation", thumbnail: "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?w=600&q=80" },
+      { title: "Music Theory for Songwriters", description: "Guided a songwriter through chord progressions, modes, and arrangement techniques.", category: "Music Theory", completedDate: "Jan 2026", duration: "6 weeks", studentName: "Jordan T.", outcome: "Student wrote and recorded their first original EP", thumbnail: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=600&q=80" },
+    ],
   },
   {
     id: "2",
