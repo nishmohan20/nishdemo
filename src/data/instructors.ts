@@ -131,6 +131,11 @@ export const instructors: Instructor[] = [
     profileViews: 412,
     totalBookings: 3,
     whyChooseMe: "I teach the way I wish someone taught me — with real projects, not textbook exercises. You'll build portfolio-ready work from day one.",
+    recentProjects: [
+      { title: "Full-Stack Dashboard App", description: "Mentored a career-changer through building a real-time analytics dashboard with React and Python.", category: "React", completedDate: "Mar 2026", duration: "10 weeks", studentName: "Casey R.", outcome: "Student landed a junior developer role within 2 weeks of completing the project", thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" },
+      { title: "ML Price Predictor", description: "Built an end-to-end machine learning pipeline for real estate price prediction.", category: "Data Science", completedDate: "Feb 2026", duration: "6 weeks", studentName: "Aisha M.", outcome: "Project featured in student's portfolio and discussed in 3 job interviews", thumbnail: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&q=80" },
+      { title: "Python Automation Suite", description: "Created a suite of automation scripts to streamline a small business's daily operations.", category: "Python", completedDate: "Jan 2026", duration: "4 weeks", studentName: "Derek L.", outcome: "Saved the business 15 hours/week in manual data entry", thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&q=80" },
+    ],
   },
   {
     id: "4",
