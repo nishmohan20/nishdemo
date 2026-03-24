@@ -187,6 +187,9 @@ export const instructors: Instructor[] = [
     profileViews: 328,
     totalBookings: 5,
     whyChooseMe: "Fitness should feel empowering, not punishing. I create sustainable routines that fit your life, not the other way around.",
+    recentProjects: [
+      { title: "30-Day Transformation Challenge", description: "Designed a personalized HIIT + yoga program for a busy professional looking to build sustainable fitness habits.", category: "HIIT", completedDate: "Mar 2026", duration: "4 weeks", studentName: "Tanya B.", outcome: "Lost 8 lbs and reported 40% improvement in energy levels", thumbnail: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" },
+    ],
   },
   {
     id: "6",
